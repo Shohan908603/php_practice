@@ -1,21 +1,23 @@
-
 <?php
 
 
-$im = imagecreatefromjpeg('index.jpg');
-      
-    
-    $size = min(imagesx($im), imagesy($im));
-      
-    
-    $im2 = imagecrop($im, ['x' => 290, 'y' => 150, 'width' => 300, 'height' => 250]);
-    if ($im2 !== FALSE) {
-        header("Content-type: image/png");
-           imagepng($im2);
-        imagedestroy($im2);
-    }
-    imagejpeg($im2, "crop.jpg");
-    imagedestroy($im);
 
 
-    ?>
+$img = imagecreatefromjpeg("index.jpg");
+
+
+$txt = "Hello World \n I am shohan";
+$fontFile = "C:\Windows\Fonts\arial.ttf"; 
+$fontSize = 20;
+$fontColor = imagecolorallocate($img, 255, 255, 255);
+$posX = 70;
+$posY = 80;
+$angle = 0;
+imagettftext($img, $fontSize, $angle, $posX, $posY, $fontColor, $fontFile, $txt);
+
+
+header("Content-type: image/jpeg");
+imagejpeg($img);
+imagedestroy($img);
+
+?>
